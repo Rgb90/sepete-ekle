@@ -1,13 +1,25 @@
-import ProductItem from "./ProductItem"
+import ProductItem from "./ProductItem";
+import productData, { Product } from "../productData"; // Product tipi import ediliyor
 
-const Products = () => {
-  return (
-    <div className="grid grid-cols-3 gap-10 mb-8">
-        <ProductItem />
-        <ProductItem />
-        <ProductItem />
-    </div>
-  )
+// Props tipi tanımlanıyor
+interface ProductsProps {
+  cart: Product[]; // cart, Product türünde bir array olacak
+  setCart: React.Dispatch<React.SetStateAction<Product[]>>; // setCart, Product[] dizisini güncelleyen bir fonksiyon olacak
 }
 
-export default Products
+const Products = ({ cart, setCart }: ProductsProps) => {
+  return (
+    <div className="grid grid-cols-3 gap-10 mb-8">
+      {productData.map((product) => (
+        <ProductItem
+          key={product.id}
+          product={product}
+          cart={cart}           // cart prop'u buraya geçiliyor
+          setCart={setCart}      // setCart prop'u buraya geçiliyor
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Products;
