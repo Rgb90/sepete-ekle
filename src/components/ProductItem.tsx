@@ -11,7 +11,7 @@ interface ProductItemProps {
   setCart: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
-const ProductItem = ({ product, cart, setCart }: ProductItemProps) => {
+const ProductItem = ({ product, setCart }: ProductItemProps) => {
   const addToCart = (product: Product) => {
     // setCart([...cart, product]);  // Sepete ürün ekleme işlemi
     setCart((prevState) => [...prevState, product]);
